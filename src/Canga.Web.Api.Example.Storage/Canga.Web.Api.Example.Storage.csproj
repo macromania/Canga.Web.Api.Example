@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Canga.Web.Api.Example.Contract\Canga.Web.Api.Example.Contract.csproj" />
       <ProjectReference Include="..\Canga.Web.Api.Example.Storage.Model\Canga.Web.Api.Example.Storage.Model.csproj" />
     </ItemGroup>
 

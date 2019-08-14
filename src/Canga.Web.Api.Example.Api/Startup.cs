@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using Canga.Web.Api.Example.Storage.Albums;
+using Canga.Web.Api.Example.Storage.Model;
+using Canga.Web.Api.Example.Storage.SampleData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +33,16 @@ namespace Canga.Web.Api.Example.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             ConfigureApiDocs(services);
+            ConfigureBusinessLayer(services);
+        }
+
+        private void ConfigureBusinessLayer(IServiceCollection services)
+        {
+            var albumsDataPath = Path.Combine("SampleData", "Data", "albums.json");
+            var photosDataPath = Path.Combine("SampleData", "Data", "photos.json");
+            services.AddSingleton(typeof(ISampleDataReader), provider => new SampleDataReader(albumsDataPath, photosDataPath));
+
+            services.AddSingleton<IAlbumRepository, AlbumRepository>();
         }
 
         private void ConfigureApiDocs(IServiceCollection services)

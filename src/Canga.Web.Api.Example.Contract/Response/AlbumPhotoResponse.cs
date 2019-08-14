@@ -1,6 +1,6 @@
 namespace Canga.Web.Api.Example.Contract.Response
 {
-    public abstract class AlbumPhotoResponse
+    public class AlbumPhotoResponse
     {
         public string AlbumId { get; set; }
 

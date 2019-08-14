@@ -27,7 +27,12 @@ namespace Canga.Web.Api.Example.Test.Endpoint
             var result = await response.Content.ReadAsAsync<List<AlbumResponse>>();
 
             // Assert
-            Assert.AreEqual(expected: 0, actual: result.Count);
+            Assert.AreEqual(expected: 10, actual: result.Count);
+            
+            result.ForEach((album) =>
+            {
+                Assert.AreEqual(expected: UserId, actual: album.UserId);
+            });
         }
     }
 }

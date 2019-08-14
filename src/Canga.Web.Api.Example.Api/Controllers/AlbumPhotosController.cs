@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Canga.Web.Api.Example.Contract.Response;
+using Canga.Web.Api.Example.Storage.Albums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Canga.Web.Api.Example.Api.Controllers
@@ -13,6 +14,14 @@ namespace Canga.Web.Api.Example.Api.Controllers
     [ApiController]
     public class AlbumPhotosController : ControllerBase
     {
+        private readonly IAlbumRepository _albumRepository;
+        
+        /// <summary>
+        /// AlbumPhotos Controller
+        /// </summary>
+        /// <param name="albumRepository">Storage repository to read album data</param>
+        public AlbumPhotosController(IAlbumRepository albumRepository) => _albumRepository = albumRepository;
+        
         /// <summary>
         /// Returns list of photos of an album for a given user
         /// </summary>
@@ -25,7 +34,8 @@ namespace Canga.Web.Api.Example.Api.Controllers
             [FromHeader(Name = "User-Id"), Required(ErrorMessage = "Request Header is missing User-Id value", AllowEmptyStrings = false)] string userId,
             [Required(ErrorMessage = "Album ID is missing in the URL", AllowEmptyStrings = false)] string albumId)
         {
-            return Ok(new List<AlbumPhotoResponse>());
+            var result = await _albumRepository.ListUserAlbumPhotosAsync(userId, albumId);
+            return Ok(result);
         }
     }
 }
