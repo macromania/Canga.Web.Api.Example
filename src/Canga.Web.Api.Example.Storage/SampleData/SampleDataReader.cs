@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Canga.Web.Api.Example.Storage.Model;
 
@@ -10,23 +9,20 @@ namespace Canga.Web.Api.Example.Storage.SampleData
         private readonly string _albumsDataPath;
         private readonly string _photosDataPath;
 
-        public SampleDataReader(string albumsDataPath, string photosDataPath)
+        private readonly IContentReader _contentReader;
+
+        public SampleDataReader(string albumsDataPath, string photosDataPath, IContentReader contentReader)
         {
             _albumsDataPath = albumsDataPath;
             _photosDataPath = photosDataPath;
+            _contentReader = contentReader;
         }
         public async Task<List<Album>> ReadAlbumsAsync()
         {
-            var albumsContent = await ReadContent(_albumsDataPath);
-            var photosContent = await ReadContent(_photosDataPath);
+            var albumsContent = await _contentReader.ReadContent(_albumsDataPath);
+            var photosContent = await _contentReader.ReadContent(_photosDataPath);
             var albums = SampleDataParser.Parse(albumsContent, photosContent);
             return albums;
-        }
-        
-        private static async Task<string> ReadContent(string path)
-        {
-            var content = await File.ReadAllTextAsync(path);
-            return content;
         }
     }
 }

@@ -5,7 +5,6 @@ using Canga.Web.Api.Example.Api;
 using Canga.Web.Api.Example.Contract.Response;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
 
 namespace Canga.Web.Api.Example.Test.Endpoint
 {

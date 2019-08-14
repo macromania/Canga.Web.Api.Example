@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Canga.Web.Api.Example.Storage.SampleData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Canga.Web.Api.Example.Test.Storage.SampleData
+namespace Canga.Web.Api.Example.Test.Storage
 {
     [TestClass]
     public class SampleDataReaderShould
@@ -16,7 +16,7 @@ namespace Canga.Web.Api.Example.Test.Storage.SampleData
             // Arrange
             var albumsDataPath = Path.Combine("Storage", "Data", "albums.json");
             var photoDataPath = Path.Combine("Storage", "Data", "photos.json");
-            _sampleDataReader = new SampleDataReader(albumsDataPath, photoDataPath);
+            _sampleDataReader = new SampleDataReader(albumsDataPath, photoDataPath, new FileContentReader());
             
             // Act
             var result = await _sampleDataReader.ReadAlbumsAsync();

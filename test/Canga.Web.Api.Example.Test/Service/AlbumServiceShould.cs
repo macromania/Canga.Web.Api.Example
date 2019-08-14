@@ -18,12 +18,12 @@ namespace Canga.Web.Api.Example.Test.Service
         private IAlbumService _albumService;
 
         [TestInitialize]
-        public async Task Init()
+        public void Init()
         {
             var albumsDataPath = Path.Combine("Storage", "Data", "albums.json");
             var photoDataPath = Path.Combine("Storage", "Data", "photos.json");
             
-            _sampleDataReader = new SampleDataReader(albumsDataPath, photoDataPath);
+            _sampleDataReader = new SampleDataReader(albumsDataPath, photoDataPath, new FileContentReader());
             _albumRepository = new AlbumRepository(_sampleDataReader);
             _albumService = new AlbumService(_albumRepository);
         }
@@ -32,7 +32,7 @@ namespace Canga.Web.Api.Example.Test.Service
         public async Task Return_List_Of_User_Albums()
         {
             // Act
-            var result = await _albumRepository.ListUserAlbumsAsync(UserId);
+            var result = await _albumService.ListUserAlbumsAsync(UserId);
             
             // Assert
             Assert.AreEqual(expected: 10, actual: result.Count);
@@ -47,7 +47,7 @@ namespace Canga.Web.Api.Example.Test.Service
         public async Task Return_List_Of_User_Album_Photos()
         {
             // Act
-            var result = await _albumRepository.ListUserAlbumPhotosAsync(userId: UserId, albumId: AlbumId);
+            var result = await _albumService.ListUserAlbumPhotosAsync(userId: UserId, albumId: AlbumId);
             
             // Assert
             Assert.AreEqual(expected: 50, actual: result.Count);

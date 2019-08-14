@@ -16,12 +16,12 @@ namespace Canga.Web.Api.Example.Test.Storage
         private ISampleDataReader _sampleDataReader;
 
         [TestInitialize]
-        public async Task Init()
+        public void Init()
         {
             var albumsDataPath = Path.Combine("Storage", "Data", "albums.json");
             var photoDataPath = Path.Combine("Storage", "Data", "photos.json");
             
-            _sampleDataReader = new SampleDataReader(albumsDataPath, photoDataPath);
+            _sampleDataReader = new SampleDataReader(albumsDataPath, photoDataPath, new FileContentReader());
             _albumRepository = new AlbumRepository(_sampleDataReader);
         }
         

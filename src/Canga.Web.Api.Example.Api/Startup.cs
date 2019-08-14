@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using Canga.Web.Api.Example.Service.Albums;
 using Canga.Web.Api.Example.Storage.Albums;
-using Canga.Web.Api.Example.Storage.Model;
 using Canga.Web.Api.Example.Storage.SampleData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,15 +16,12 @@ namespace Canga.Web.Api.Example.Api
 #pragma warning disable 1591
     public class Startup
     {
-        public static readonly string ApiName = typeof(Startup).Module.Name.Replace(".dll", "");
-        public static readonly string ApiVersion = "v1";
-        public static string ApiDescription = "An example Web API setup";
-        
-        public IConfiguration Configuration { get; }
-        
+        public const string ApiVersion = "v1";
+        public const string ApiDescription = "An example Web API setup";
+        public const string ApiName = "User Photo Albums API";
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
         }
         
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -39,9 +35,9 @@ namespace Canga.Web.Api.Example.Api
 
         private void ConfigureBusinessLayer(IServiceCollection services)
         {
-            var albumsDataPath = "/albums";
-            var photosDataPath = "/photos";
-            services.AddSingleton(typeof(ISampleDataReader), provider => new SampleDataDownloader(albumsDataPath, photosDataPath));
+            const string albumsDataPath = "/albums";
+            const string photosDataPath = "/photos";
+            services.AddSingleton(typeof(ISampleDataReader), provider => new SampleDataReader(albumsDataPath, photosDataPath, new HttpContentReader()));
 
             services.AddTransient<IAlbumRepository, AlbumRepository>();
             services.AddTransient<IAlbumService, AlbumService>();

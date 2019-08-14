@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Canga.Web.Api.Example.Contract.Response;
 using Canga.Web.Api.Example.Service.Albums;
-using Canga.Web.Api.Example.Storage.Albums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Canga.Web.Api.Example.Api.Controllers
