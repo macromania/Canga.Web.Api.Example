@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using Canga.Web.Api.Example.Contract.Config;
 using Canga.Web.Api.Example.Service.Albums;
 using Canga.Web.Api.Example.Storage.Albums;
 using Canga.Web.Api.Example.Storage.SampleData;
@@ -22,7 +23,10 @@ namespace Canga.Web.Api.Example.Api
 
         public Startup(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
         
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,9 +39,10 @@ namespace Canga.Web.Api.Example.Api
 
         private void ConfigureBusinessLayer(IServiceCollection services)
         {
-            const string albumsDataPath = "/albums";
-            const string photosDataPath = "/photos";
-            services.AddSingleton(typeof(ISampleDataReader), provider => new SampleDataReader(albumsDataPath, photosDataPath, new HttpContentReader()));
+            var contentConfig = Configuration.GetSection("Content").Get<ContentConfig>();
+            var httpContentReader = new HttpContentReader(contentConfig.Url);
+            var sampleDataReader = new SampleDataReader(contentConfig.Albums, contentConfig.Photos, httpContentReader);
+            services.AddSingleton(typeof(ISampleDataReader), provider => sampleDataReader);
 
             services.AddTransient<IAlbumRepository, AlbumRepository>();
             services.AddTransient<IAlbumService, AlbumService>();
