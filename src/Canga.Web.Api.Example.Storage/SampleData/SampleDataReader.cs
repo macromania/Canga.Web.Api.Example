@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Canga.Web.Api.Example.Storage.Model;
-using Newtonsoft.Json;
 
 namespace Canga.Web.Api.Example.Storage.SampleData
 {
@@ -20,17 +18,8 @@ namespace Canga.Web.Api.Example.Storage.SampleData
         public async Task<List<Album>> ReadAlbumsAsync()
         {
             var albumsContent = await ReadContent(_albumsDataPath);
-            var albums = JsonConvert.DeserializeObject<List<Album>>(albumsContent);
-            
             var photosContent = await ReadContent(_photosDataPath);
-            var photos = JsonConvert.DeserializeObject<List<AlbumPhoto>>(photosContent);
-            
-            photos.ForEach((photo) =>
-            {
-                var album = albums.FirstOrDefault(i => i.Id == photo.AlbumId);
-                album?.Photos.Add(photo);
-            });
-
+            var albums = SampleDataParser.Parse(albumsContent, photosContent);
             return albums;
         }
         

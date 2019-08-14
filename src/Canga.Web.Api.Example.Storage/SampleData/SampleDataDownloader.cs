@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Canga.Web.Api.Example.Storage.Model;
-using Newtonsoft.Json;
 
 namespace Canga.Web.Api.Example.Storage.SampleData
 {
@@ -22,24 +20,14 @@ namespace Canga.Web.Api.Example.Storage.SampleData
         public async Task<List<Album>> ReadAlbumsAsync()
         {
             var albumsContent = await ReadContent(_albumsDataPath);
-            var albums = JsonConvert.DeserializeObject<List<Album>>(albumsContent);
-            
             var photosContent = await ReadContent(_photosDataPath);
-            var photos = JsonConvert.DeserializeObject<List<AlbumPhoto>>(photosContent);
-            
-            photos.ForEach((photo) =>
-            {
-                var album = albums.FirstOrDefault(i => i.Id == photo.AlbumId);
-                album?.Photos.Add(photo);
-            });
-
+            var albums = SampleDataParser.Parse(albumsContent, photosContent);
             return albums;
         }
         
         private static async Task<string> ReadContent(string path)
         {
-            var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://jsonplaceholder.typicode.com");
+            var httpClient = new HttpClient {BaseAddress = new Uri("http://jsonplaceholder.typicode.com")};
             var response = await httpClient.GetAsync(path);
             var content = await response.Content.ReadAsStringAsync();
             return content;
