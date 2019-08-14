@@ -18,14 +18,14 @@ namespace Canga.Web.Api.Example.Api.Controllers
         /// </summary>
         /// <param name="userId">Authenticated User ID</param>
         /// <param name="albumId">Album ID</param>
-        /// <response code="200">Returns list of <see cref="AlbumResponse"/></response>
+        /// <response code="200">Returns list of <see cref="AlbumPhotoResponse"/></response>
         [HttpGet]
         [Route("/albums/{albumId}/photos")]
-        public async Task<ActionResult<List<PhotoResponse>>> ListAlbumPhotosAsync(
+        public async Task<ActionResult<List<AlbumPhotoResponse>>> ListAlbumPhotosAsync(
             [FromHeader(Name = "User-Id"), Required(ErrorMessage = "Request Header is missing User-Id value", AllowEmptyStrings = false)] string userId,
             [Required(ErrorMessage = "Album ID is missing in the URL", AllowEmptyStrings = false)] string albumId)
         {
-            return Ok(new List<PhotoResponse>());
+            return Ok(new List<AlbumPhotoResponse>());
         }
     }
 }

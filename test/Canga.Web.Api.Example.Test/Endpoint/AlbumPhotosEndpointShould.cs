@@ -25,7 +25,7 @@ namespace Canga.Web.Api.Example.Test.Endpoint
             // Act
             var response = await httpClient.GetAsync($"/albums/{AlbumId}/photos");
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsAsync<List<PhotoResponse>>();
+            var result = await response.Content.ReadAsAsync<List<AlbumPhotoResponse>>();
 
             // Assert
             Assert.AreEqual(expected: 0, actual: result.Count);
