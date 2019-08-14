@@ -14,6 +14,8 @@ namespace Canga.Web.Api.Example.Test.Endpoint
         {
             // Arrange
             var apiName = Startup.ApiName;
+            var apiDescription = Startup.ApiDescription;
+            var apiVersion = Startup.ApiVersion;
             var docsUrl = "https://localhost/docs";
             var httpClient = new WebApplicationFactory<Startup>().CreateClient();
 
@@ -25,6 +27,8 @@ namespace Canga.Web.Api.Example.Test.Endpoint
 
             // Assert
             Assert.AreEqual(apiName, homeResponseContent["message"].ToString());
+            Assert.AreEqual(apiDescription, homeResponseContent["details"].ToString());
+            Assert.AreEqual(apiVersion, homeResponseContent["version"].ToString());
             Assert.AreEqual(docsUrl, homeResponseContent["docs"].ToString());
         }
     }

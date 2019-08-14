@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Canga.Web.Api.Example.Controllers
 {
+    /// <summary>
+    /// Home Endpoint
+    /// </summary>
     [Route("/")]
     [ApiController]
     public class HomeController : ControllerBase
@@ -19,6 +22,8 @@ namespace Canga.Web.Api.Example.Controllers
             return Ok(new
             {
                 message = Startup.ApiName,
+                details = Startup.ApiDescription,
+                version = Startup.ApiVersion,
                 docs = $"https://{Request.Host}/docs",
             });
         }
