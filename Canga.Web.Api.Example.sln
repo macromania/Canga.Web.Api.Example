@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canga.Web.Api.Example.Stora
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canga.Web.Api.Example.Storage", "src\Canga.Web.Api.Example.Storage\Canga.Web.Api.Example.Storage.csproj", "{E1B6C53A-7649-4E01-AD2C-23B5CB178D3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canga.Web.Api.Example.Service", "src\Canga.Web.Api.Example.Service\Canga.Web.Api.Example.Service.csproj", "{B2BAFD97-7BAB-4CFA-90CE-438D7044B690}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{CDC2F8DD-4C68-4FAB-8647-83828F181FAA} = {92BBC9E0-2798-4D04-83AB-42934B08CCD0}
 		{C4288A0A-2E12-4939-8469-9E71B994C82E} = {92BBC9E0-2798-4D04-83AB-42934B08CCD0}
 		{E1B6C53A-7649-4E01-AD2C-23B5CB178D3D} = {92BBC9E0-2798-4D04-83AB-42934B08CCD0}
+		{B2BAFD97-7BAB-4CFA-90CE-438D7044B690} = {92BBC9E0-2798-4D04-83AB-42934B08CCD0}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3838EA86-FCCE-48EC-AF64-E290A801D494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,5 +50,9 @@ Global
 		{E1B6C53A-7649-4E01-AD2C-23B5CB178D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1B6C53A-7649-4E01-AD2C-23B5CB178D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1B6C53A-7649-4E01-AD2C-23B5CB178D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2BAFD97-7BAB-4CFA-90CE-438D7044B690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2BAFD97-7BAB-4CFA-90CE-438D7044B690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2BAFD97-7BAB-4CFA-90CE-438D7044B690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2BAFD97-7BAB-4CFA-90CE-438D7044B690}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

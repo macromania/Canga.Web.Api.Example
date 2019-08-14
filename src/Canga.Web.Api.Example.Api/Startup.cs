@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using Canga.Web.Api.Example.Service.Albums;
 using Canga.Web.Api.Example.Storage.Albums;
 using Canga.Web.Api.Example.Storage.Model;
 using Canga.Web.Api.Example.Storage.SampleData;
@@ -42,7 +43,8 @@ namespace Canga.Web.Api.Example.Api
             var photosDataPath = Path.Combine("SampleData", "Data", "photos.json");
             services.AddSingleton(typeof(ISampleDataReader), provider => new SampleDataReader(albumsDataPath, photosDataPath));
 
-            services.AddSingleton<IAlbumRepository, AlbumRepository>();
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
+            services.AddTransient<IAlbumService, AlbumService>();
         }
 
         private void ConfigureApiDocs(IServiceCollection services)

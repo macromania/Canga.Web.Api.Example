@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Canga.Web.Api.Example.Contract.Response;
+using Canga.Web.Api.Example.Service.Albums;
 using Canga.Web.Api.Example.Storage.Albums;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,13 +15,13 @@ namespace Canga.Web.Api.Example.Api.Controllers
     [ApiController]
     public class AlbumsController : ControllerBase
     {
-        private readonly IAlbumRepository _albumRepository;
+        private readonly IAlbumService _albumService;
 
         /// <summary>
         /// Albums Controller
         /// </summary>
-        /// <param name="albumRepository">Storage repository to read album data</param>
-        public AlbumsController(IAlbumRepository albumRepository) => _albumRepository = albumRepository;
+        /// <param name="albumService">Storage repository to read album data</param>
+        public AlbumsController(IAlbumService albumService) => _albumService = albumService;
         
         /// <summary>
         /// Returns list of albums for a given user
@@ -32,7 +33,7 @@ namespace Canga.Web.Api.Example.Api.Controllers
         public async Task<ActionResult<List<AlbumResponse>>> ListAlbumsAsync(
             [FromHeader(Name = "User-Id"), Required(ErrorMessage = "Request Header is missing User-Id value", AllowEmptyStrings = false)] string userId)
         {
-            var result = await _albumRepository.ListUserAlbumsAsync(userId);
+            var result = await _albumService.ListUserAlbumsAsync(userId);
             return Ok(result);
         }
     }

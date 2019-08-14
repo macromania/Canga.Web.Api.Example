@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Canga.Web.Api.Example.Contract.Response;
 using Canga.Web.Api.Example.Storage.Model;
 
-namespace Canga.Web.Api.Example.Storage.Albums
+namespace Canga.Web.Api.Example.Service.Albums
 {
     internal class AlbumConverter
     {

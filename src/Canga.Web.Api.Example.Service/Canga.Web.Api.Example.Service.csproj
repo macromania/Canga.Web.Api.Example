@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Canga.Web.Api.Example.Contract\Canga.Web.Api.Example.Contract.csproj" />
+      <ProjectReference Include="..\Canga.Web.Api.Example.Storage\Canga.Web.Api.Example.Storage.csproj" />
+    </ItemGroup>
+
+</Project>
