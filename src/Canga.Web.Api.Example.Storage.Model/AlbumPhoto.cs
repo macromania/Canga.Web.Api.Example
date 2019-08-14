@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace Canga.Web.Api.Example.Storage.Model
 {
     public class AlbumPhoto

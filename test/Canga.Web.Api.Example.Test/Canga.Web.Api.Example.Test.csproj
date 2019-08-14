@@ -16,6 +16,22 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Canga.Web.Api.Example.Api\Canga.Web.Api.Example.Api.csproj" />
+      <ProjectReference Include="..\..\src\Canga.Web.Api.Example.Storage\Canga.Web.Api.Example.Storage.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Storage\SampleData\albums.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Storage\SampleData\photos.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Storage\Data\albums.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Storage\Data\photos.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
