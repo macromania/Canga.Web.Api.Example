@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Canga.Web.Api.Example.Contract.Response;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Canga.Web.Api.Example.Controllers
+namespace Canga.Web.Api.Example.Api.Controllers
 {
     /// <summary>
     /// Albums Endpoint

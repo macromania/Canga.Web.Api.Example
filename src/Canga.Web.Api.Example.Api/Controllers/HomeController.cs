@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Canga.Web.Api.Example.Controllers
+namespace Canga.Web.Api.Example.Api.Controllers
 {
     /// <summary>
     /// Home Endpoint

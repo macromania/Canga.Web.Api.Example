@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Canga.Web.Api.Example
+namespace Canga.Web.Api.Example.Api
 {
 #pragma warning disable 1591
     public class Program

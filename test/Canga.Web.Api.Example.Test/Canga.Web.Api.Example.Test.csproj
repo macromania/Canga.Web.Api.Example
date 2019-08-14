@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Canga.Web.Api.Example\Canga.Web.Api.Example.csproj" />
+      <ProjectReference Include="..\..\src\Canga.Web.Api.Example.Api\Canga.Web.Api.Example.Api.csproj" />
     </ItemGroup>
 
 </Project>
