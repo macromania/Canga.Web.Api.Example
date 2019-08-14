@@ -10,7 +10,7 @@ namespace Canga.Web.Api.Example.Test.Endpoint
     public class HomeEndpointShould
     {
         [TestMethod]
-        public async Task Return_ApiName_And_Docs_Url()
+        public async Task Return_Welcome_Message()
         {
             // Arrange
             var apiName = Startup.ApiName;
@@ -20,16 +20,15 @@ namespace Canga.Web.Api.Example.Test.Endpoint
             var httpClient = new WebApplicationFactory<Startup>().CreateClient();
 
             // Act
-            var homeResponse = await httpClient.GetAsync("/");
-            homeResponse.EnsureSuccessStatusCode();
-
-            var homeResponseContent = await homeResponse.Content.ReadAsAsync<JObject>();
+            var response = await httpClient.GetAsync("/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsAsync<JObject>();
 
             // Assert
-            Assert.AreEqual(apiName, homeResponseContent["message"].ToString());
-            Assert.AreEqual(apiDescription, homeResponseContent["details"].ToString());
-            Assert.AreEqual(apiVersion, homeResponseContent["version"].ToString());
-            Assert.AreEqual(docsUrl, homeResponseContent["docs"].ToString());
+            Assert.AreEqual(expected: apiName, actual: result["message"].ToString());
+            Assert.AreEqual(expected: apiDescription, actual: result["details"].ToString());
+            Assert.AreEqual(expected: apiVersion, actual: result["version"].ToString());
+            Assert.AreEqual(expected: docsUrl, actual: result["docs"].ToString());
         }
     }
 }
