@@ -16,10 +16,10 @@ namespace Canga.Web.Api.Example.Test.Storage.SampleData
             // Arrange
             var albumsDataPath = Path.Combine("Storage", "Data", "albums.json");
             var photoDataPath = Path.Combine("Storage", "Data", "photos.json");
-            _sampleDataReader = new SampleDataReader();
+            _sampleDataReader = new SampleDataReader(albumsDataPath, photoDataPath);
             
             // Act
-            var result = await _sampleDataReader.ReadAlbumsAsync(albumsDataPath, photoDataPath);
+            var result = await _sampleDataReader.ReadAlbumsAsync();
             
             // Assert
             Assert.AreEqual(expected: 100, actual: result.Count);

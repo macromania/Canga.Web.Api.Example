@@ -6,6 +6,6 @@ namespace Canga.Web.Api.Example.Storage.SampleData
 {
     public interface ISampleDataReader
     {
-        Task<List<Album>> ReadAlbumsAsync(string albumsDataPath, string photosDataPath);
+        Task<List<Album>> ReadAlbumsAsync();
     }
 }

@@ -9,12 +9,20 @@ namespace Canga.Web.Api.Example.Storage.SampleData
 {
     public class SampleDataReader : ISampleDataReader
     {
-        public async Task<List<Album>> ReadAlbumsAsync(string albumsDataPath, string photosDataPath)
+        private readonly string _albumsDataPath;
+        private readonly string _photosDataPath;
+
+        public SampleDataReader(string albumsDataPath, string photosDataPath)
         {
-            var albumsContent = await ReadContent(albumsDataPath);
+            _albumsDataPath = albumsDataPath;
+            _photosDataPath = photosDataPath;
+        }
+        public async Task<List<Album>> ReadAlbumsAsync()
+        {
+            var albumsContent = await ReadContent(_albumsDataPath);
             var albums = JsonConvert.DeserializeObject<List<Album>>(albumsContent);
             
-            var photosContent = await ReadContent(photosDataPath);
+            var photosContent = await ReadContent(_photosDataPath);
             var photos = JsonConvert.DeserializeObject<List<AlbumPhoto>>(photosContent);
             
             photos.ForEach((photo) =>
