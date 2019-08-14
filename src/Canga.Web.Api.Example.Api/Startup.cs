@@ -39,9 +39,9 @@ namespace Canga.Web.Api.Example.Api
 
         private void ConfigureBusinessLayer(IServiceCollection services)
         {
-            var albumsDataPath = Path.Combine("SampleData", "Data", "albums.json");
-            var photosDataPath = Path.Combine("SampleData", "Data", "photos.json");
-            services.AddSingleton(typeof(ISampleDataReader), provider => new SampleDataReader(albumsDataPath, photosDataPath));
+            var albumsDataPath = "/albums";
+            var photosDataPath = "/photos";
+            services.AddSingleton(typeof(ISampleDataReader), provider => new SampleDataDownloader(albumsDataPath, photosDataPath));
 
             services.AddTransient<IAlbumRepository, AlbumRepository>();
             services.AddTransient<IAlbumService, AlbumService>();
